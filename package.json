@@ -1,0 +1,23 @@
+{
+  "name": "node-omsa",
+  "version": "1.0.0",
+  "description": "nodejs util to send omreport data to grafana",
+  "main": "omsa.js",
+  "dependencies": {
+    "mariasql": "^0.2.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/indriApollo/node-omsa.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/indriApollo/node-omsa/issues"
+  },
+  "homepage": "https://github.com/indriApollo/node-omsa#readme"
+}

@@ -1,4 +1,5 @@
 const child_process = require("child_process");
+const db = require("./db.js");
 
 function parse(str) {
 
@@ -14,7 +15,7 @@ function parse(str) {
     const re = /Power Consumption\nIndex\s+: \d\nStatus\s+: .+\nProbe Name\s+: System Board System Level\nReading\s+: (\d+) W/;
     var m = re.exec(str);
     if(!m) {
-        console.log("Not found");
+        console.log("pwrmonitoring not found");
         return -1;
     }
     return m[1];
@@ -27,10 +28,16 @@ function omreport(callback) {
     });
 }
 
-function omsaPwr(callback) {
+function pwrmonitoring(conf) {
     omreport((output) => {
-        callback( parse(output) );
+        var pwrReading = parse(output);
+
+        var query = "INSERT INTO pwrmonitoring (pwr_reading) VALUES(?)";
+        var params = [pwrReading];
+
+        console.log("pwrmonitoring: "+pwrReading+" W");
+        db(conf, query, params);
     });
 }
 
-module.exports = omsaPwr;
+module.exports = pwrmonitoring;
