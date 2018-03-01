@@ -22,7 +22,7 @@ function parse(str) {
 }
 
 function omreport(callback) {
-    child_process.exec("omreport chassis pwrmonitoring unit=watt", function (error, stdout, stderr) {
+    child_process.exec("/opt/dell/srvadmin/sbin/omreport chassis pwrmonitoring unit=watt", function (error, stdout, stderr) {
         if(error) console.log(stderr);
         callback(stdout);
     });

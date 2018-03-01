@@ -1,5 +1,6 @@
 const fs = require("fs");
 const pwrmonitoring = require("./pwr.js");
+const tmpmonitoring = require("./tmp.js");
 
 console.log("Load config ...");
 const confkeys = [
@@ -7,7 +8,8 @@ const confkeys = [
     "db_user",
     "db_password",
     "db_name",
-    "pwr_interval"
+    "pwr_interval",
+    "tmp_interval"
 ];
 const conf = JSON.parse(fs.readFileSync("config.json"));
 for(var i = 0; i < confkeys.length; i++) {
@@ -18,3 +20,4 @@ for(var i = 0; i < confkeys.length; i++) {
 }
 
 setInterval(pwrmonitoring, conf.pwr_interval*60*1000, conf);
+setInterval(tmpmonitoring, conf.tmp_interval*60*1000, conf);
